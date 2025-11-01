@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Elroy’s Blog</title>
+  <title>My Blog</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,105 +13,84 @@
   <style>
     body {
       font-family: 'Inter', sans-serif;
-      background-color: #f8f8f8;
-      color: #1a1a1a;
+      background-color: #fff;
+      color: #222;
       margin: 0;
       padding: 0;
       font-size: 18px;
-      line-height: 1.7;
+      line-height: 1.6;
     }
 
-    /* ======= HEADER / NAV ======= */
+    /* ======= NAVBAR ======= */
     nav {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 20px 60px;
-      border-bottom: 1px solid #ddd;
-      background-color: #fff;
-    }
-
-    nav h2 {
-      font-weight: 700;
-      color: #111;
-      letter-spacing: 0.5px;
+      border-bottom: 1px solid #eee;
     }
 
     .nav-links a {
       margin-left: 30px;
       text-decoration: none;
-      font-weight: 500;
+      font-weight: 600;
       color: #333;
       transition: color 0.2s ease;
     }
 
     .nav-links a:hover {
-      color: #555;
+      color: #0070f3;
     }
 
-    /* ======= MAIN SECTION ======= */
+    /* ======= MAIN CONTENT ======= */
     .blog-container {
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
       align-items: flex-start;
-      max-width: 900px;
-      margin: 80px auto;
-      padding: 0 20px;
-      gap: 60px;
-    }
-
-    .blog-header {
-      text-align: center;
-      margin-bottom: 50px;
+      max-width: 1000px;
+      margin: 60px auto;
+      padding: 20px;
+      gap: 40px;
     }
 
     .blog-header h1 {
-      font-size: 2.4rem;
-      margin-bottom: 8px;
-      color: #111;
-      font-weight: 700;
+      font-size: 2.8rem;
+      margin-bottom: 10px;
     }
 
-    .subtitle {
-      font-size: 1.1rem;
-      color: #555;
-      font-weight: 400;
+    .blog-header .subtitle {
+      font-size: 1.2rem;
+      color: #666;
+      margin-bottom: 30px;
     }
 
-    /* ======= SOCIAL ICONS ======= */
     .social-icons {
-      text-align: center;
-      margin-top: 25px;
-      margin-bottom: 40px;
+      margin-bottom: 50px;
     }
 
     .social-icons a {
-      color: #222;
-      font-size: 26px;
-      margin: 0 10px;
-      transition: opacity 0.2s ease;
+      color: #333;
+      font-size: 28px;
+      margin-right: 15px;
+      transition: color 0.2s ease;
     }
 
     .social-icons a:hover {
-      opacity: 0.6;
+      color: #0070f3;
     }
 
-    /* ======= BLOG LIST ======= */
     .blog-list {
       flex: 2;
     }
 
     .blog-post {
-      margin-bottom: 50px;
-      padding-bottom: 30px;
-      border-bottom: 1px solid #e6e6e6;
+      margin-bottom: 40px;
     }
 
     .blog-post h2 a {
       font-size: 1.6rem;
-      color: #111;
+      color: #222;
       text-decoration: none;
-      font-weight: 600;
     }
 
     .blog-post h2 a:hover {
@@ -121,16 +100,15 @@
     .date {
       display: block;
       font-size: 0.9rem;
-      color: #777;
-      margin-top: 5px;
-      margin-bottom: 15px;
+      color: #888;
+      margin-bottom: 10px;
     }
 
     .read-more {
       display: inline-block;
-      margin-top: 8px;
+      margin-top: 10px;
       font-weight: 600;
-      color: #444;
+      color: #0070f3;
       text-decoration: none;
     }
 
@@ -138,42 +116,35 @@
       text-decoration: underline;
     }
 
-    /* ======= PROFILE PHOTO ======= */
     .profile-photo {
       flex: 1;
       display: flex;
       justify-content: center;
-      align-items: flex-start;
-      padding-top: 20px;
     }
 
+    /* ✅ RECTANGULAR IMAGE (no more oval shape) */
     .profile-photo img {
       width: 280px;
       height: auto;
-      border-radius: 0; /* No more oval shape */
-      filter: grayscale(100%);
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-      border: 4px solid #fff;
+      border-radius: 0;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     }
 
-    /* ======= FOOTER ======= */
     .blog-footer {
       text-align: center;
-      margin-top: 60px;
+      margin-top: 50px;
       font-size: 1rem;
-      color: #666;
     }
 
     .blog-footer a {
       text-decoration: none;
-      color: #444;
+      color: #555;
     }
 
     .blog-footer a:hover {
       text-decoration: underline;
     }
 
-    /* ======= RESPONSIVE ======= */
     @media (max-width: 768px) {
       nav {
         flex-direction: column;
@@ -186,11 +157,11 @@
       }
 
       .profile-photo {
-        margin-top: 40px;
+        margin-top: 30px;
       }
 
       .profile-photo img {
-        width: 220px;
+        width: 200px;
       }
     }
   </style>
@@ -199,7 +170,7 @@
 <body>
   <!-- ======= NAVBAR ======= -->
   <nav>
-    <h2>elroy.blog</h2>
+    <h2 style="font-weight:700;">elroy.blog</h2>
     <div class="nav-links">
       <a href="recommendations.html">Recommendations</a>
       <a href="reflections.html">Reflections</a>
@@ -211,9 +182,10 @@
   <main class="blog-container">
     <section>
       <header class="blog-header">
-        <h1>In Memory of Elroy’s Thoughts</h1>
-        <p class="subtitle">A quiet space to reflect, remember, and document the journey.</p>
+        <h1>Elroy’s Blog</h1>
+        <p class="subtitle">Sharing my thoughts, recommendations and tracking my accomplishments on this html blog.</p>
 
+        <!-- ICONS BELOW INTRO -->
         <div class="social-icons">
           <a href="https://github.com/elroytoh" target="_blank" aria-label="GitHub">
             <i class="fab fa-github"></i>
@@ -224,7 +196,7 @@
         </div>
       </header>
 
-      <!-- BLOG POSTS -->
+      <!-- BLOG POST LIST -->
       <section class="blog-list">
         <article class="blog-post">
           <header>
@@ -232,7 +204,7 @@
             <time datetime="2025-06-16" class="date">June 16, 2025</time>
           </header>
           <p>
-            Wrapping up my final internship — lessons from three summers of growth.
+            Wrapping up my final internship — here’s what I’ve learned.
           </p>
           <a href="post-Jun-16-2025.html" class="read-more">Read more →</a>
         </article>
@@ -243,7 +215,7 @@
             <time datetime="2025-10-26" class="date">October 26, 2025</time>
           </header>
           <p>
-            Three months of milestones — graduating, starting at UBS, and finding independence.
+            The past three months have been packed — graduating, starting at UBS, and moving out on my own.
           </p>
           <a href="post-Oct-26-2025.html" class="read-more">Read more →</a>
         </article>
@@ -256,9 +228,8 @@
 
     <!-- PROFILE PHOTO -->
     <aside class="profile-photo">
-      <img src="elroy.jpg" alt="Elroy's portrait">
+      <img src="elroy.jpg" alt="Elroy's photo">
     </aside>
   </main>
 </body>
 </html>
-
