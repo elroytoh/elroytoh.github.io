@@ -1,5 +1,7 @@
 const { Client } = require("@notionhq/client");
+const fs = require("fs");
 
+// Create Notion client
 const notion = new Client({
   auth: process.env.NOTION_TOKEN,
 });
@@ -26,10 +28,16 @@ async function getPosts() {
   return response.results;
 }
 
+// Safely get title (works even if Notion column name differs)
 function getTitle(page) {
-  return page.properties.Name?.title?.[0]?.plain_text || "Untitled";
+  const titleProp = Object.values(page.properties).find(
+    (prop) => prop.type === "title"
+  );
+
+  return titleProp?.title?.[0]?.plain_text || "Untitled";
 }
 
+// Create URL-friendly slug
 function getSlug(title) {
   return title.toLowerCase().replace(/\s+/g, "-");
 }
@@ -63,7 +71,10 @@ async function main() {
 `;
 
   fs.writeFileSync("blog.html", html);
-  console.log("blog.html updated");
+  console.log("blog.html updated successfully");
 }
 
-main();
+main().catch((err) => {
+  console.error("Error running Notion sync:", err);
+  process.exit(1);
+});
