@@ -19,7 +19,7 @@ jobs:
           node-version: 20
 
       - name: Install dependencies
-        run: npm install @notionhq/client
+        run: npm install @notionhq/client@latest
 
       - name: Run sync script
         env:
