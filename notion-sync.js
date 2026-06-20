@@ -119,8 +119,7 @@ async function main() {
 
     fs.writeFileSync(`post-${slug}.html`, postHtml);
     console.log(`Created: post-${slug}.html`);
-    blogLinks += `<li><a href="post-${slug}.html">${title}</a> <em>${new Date(date).toLocaleDateString("en-GB", { year: "numeric", month: "long", day: "numeric" })}</em></li>\n`;
-  }
+    blogLinks += `<div class="post-item"><a href="post-${slug}.html">${title}</a> <em>${new Date(date).toLocaleDateString("en-GB", { year: "numeric", month: "long", day: "numeric" })}</em></div>\n`;
 
   const blogHtml = `<!DOCTYPE html>
 <html lang="en">
@@ -134,9 +133,9 @@ async function main() {
 <body>
   <main class="post-container">
     <h1>Blog</h1>
-    <ul>
+    <div class="post-list">
       ${blogLinks}
-    </ul>
+    </div>
   </main>
 </body>
 </html>`;
