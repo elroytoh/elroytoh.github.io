@@ -1,9 +1,6 @@
 const { Client } = require("@notionhq/client");
 const fs = require("fs");
 const notion = new Client({ auth: process.env.NOTION_TOKEN });
-console.log("notion type:", typeof notion);
-console.log("databases type:", typeof notion.databases);
-console.log("databases keys:", Object.keys(notion.databases));
 const databaseId = process.env.NOTION_DATABASE_ID;
 
 async function getPosts() {
@@ -85,7 +82,7 @@ async function main() {
 
   for (const post of posts) {
     const title = getTitle(post);
-    const slug = getSlug(title);
+    const slug = getSlug(post.title);
     const date = getDate(post);
     const category = getCategory(post);
     const content = await getContent(post.id);
@@ -120,6 +117,7 @@ async function main() {
     fs.writeFileSync(`post-${slug}.html`, postHtml);
     console.log(`Created: post-${slug}.html`);
     blogLinks += `<div class="post-item"><a href="post-${slug}.html">${title}</a> <em>${new Date(date).toLocaleDateString("en-GB", { year: "numeric", month: "long", day: "numeric" })}</em></div>\n`;
+  }
 
   const blogHtml = `<!DOCTYPE html>
 <html lang="en">
