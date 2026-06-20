@@ -1,5 +1,5 @@
 {
-  "name": "notion-blog",
+  "name": "notion-blog-sync",
   "version": "1.0.0",
   "dependencies": {
     "@notionhq/client": "^2.2.15"
