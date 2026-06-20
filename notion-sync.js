@@ -1,7 +1,8 @@
 const { Client } = require("@notionhq/client");
 const fs = require("fs");
-
 const notion = new Client({ auth: process.env.NOTION_TOKEN });
+console.log("notion type:", typeof notion);
+console.log("databases type:", typeof notion.databases);
 const databaseId = process.env.NOTION_DATABASE_ID;
 
 async function getPosts() {
