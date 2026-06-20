@@ -14,7 +14,7 @@ jobs:
         with:
           node-version: 20
       - name: Install dependencies
-        run: npm install @notionhq/client@latest
+        run: npm install @notionhq/client@2.2.15
       - name: Debug notion client
         run: node -e "const { Client } = require('@notionhq/client'); console.log(typeof Client);"
       - name: Run sync script
