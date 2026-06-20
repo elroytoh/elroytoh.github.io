@@ -17,6 +17,10 @@ jobs:
         run: npm install @notionhq/client@latest
       - name: Debug notion package
         run: node -e "const n = require('@notionhq/client'); console.log(Object.keys(n));"
+      - name: Debug notion client
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+        run: node -e "const { Client } = require('@notionhq/client'); const n = new Client({ auth: process.env.NOTION_TOKEN }); console.log(typeof n); console.log(Object.keys(n));"
       - name: Run sync script
         env:
           NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
