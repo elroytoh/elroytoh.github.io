@@ -22,10 +22,11 @@ jobs:
           NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
           NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
         run: node notion-sync.js
-      - name: Commit changes
+     - name: Commit changes
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
+          git pull --rebase origin main
           git add .
           git commit -m "sync notion blog" || exit 0
           git push
