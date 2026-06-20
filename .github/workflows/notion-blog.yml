@@ -1,32 +1,27 @@
 name: Notion Blog Sync
-
 on:
   workflow_dispatch:
   schedule:
     - cron: "0 * * * *"
-
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
-
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
-
       - name: Install dependencies
         run: npm install @notionhq/client@latest
-
+      - name: Debug notion package
+        run: node -e "const n = require('@notionhq/client'); console.log(Object.keys(n));"
       - name: Run sync script
         env:
           NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
           NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
         run: node notion-sync.js
-
       - name: Commit changes
         run: |
           git config --global user.name "github-actions"
