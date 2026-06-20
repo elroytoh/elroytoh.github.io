@@ -82,7 +82,7 @@ async function main() {
 
   for (const post of posts) {
     const title = getTitle(post);
-    const slug = getSlug(post.title);
+    const slug = getSlug(title);
     const date = getDate(post);
     const category = getCategory(post);
     const content = await getContent(post.id);
