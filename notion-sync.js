@@ -1,4 +1,5 @@
-const { Client } = require("@notionhq/client/build/src");
+const notionPkg = require("@notionhq/client");
+const Client = notionPkg.Client || notionPkg.default?.Client || Object.values(notionPkg).find(v => typeof v === "function");
 const fs = require("fs");
 
 const notion = new Client({ auth: process.env.NOTION_TOKEN });
