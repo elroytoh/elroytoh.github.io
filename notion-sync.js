@@ -1,4 +1,4 @@
-const { Client } = require("@notionhq/client");
+const { Client } = require("@notionhq/client/build/src");
 const fs = require("fs");
 
 const notion = new Client({ auth: process.env.NOTION_TOKEN });
