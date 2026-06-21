@@ -9,6 +9,8 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
@@ -27,9 +29,5 @@ jobs:
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
           git add .
-          git diff --staged --quiet && git stash || true
-          git pull --rebase origin main
-          git stash pop || true
-          git add .
-          git commit -m "sync notion blog" || true
-          git push origin main
+          git commit -m "sync notion blog" || exit 0
+          git push --force origin main
