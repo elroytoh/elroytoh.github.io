@@ -92,6 +92,7 @@ const NAV = `
       <a href="index.html#about">About</a>
       <a href="index.html#connect">Connect</a>
       <a href="blog.html">Blog</a>
+      <a href="https://elroytoh.github.io/pokemon-tracker1/dashboard.html" target="_blank" rel="noopener">Pokémon Tracker</a>
     </div>
   </nav>`;
 
