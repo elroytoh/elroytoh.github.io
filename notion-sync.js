@@ -76,6 +76,32 @@ async function getContent(pageId) {
   return content;
 }
 
+// Shared nav bar + background blobs, kept in sync with index.html / blog.html
+const NAV = `
+  <div class="bg-blobs" aria-hidden="true">
+    <span class="blob blob-a"></span>
+    <span class="blob blob-b"></span>
+  </div>
+
+  <nav class="nav">
+    <a href="index.html" class="nav-brand">Elroy Toh</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html#about">About</a>
+      <a href="index.html#connect">Connect</a>
+      <a href="blog.html">Blog</a>
+    </div>
+  </nav>`;
+
+const FOOTER = `
+  <footer class="site-footer">
+    <p>&copy; <span id="year"></span> Elroy Toh &bull; Made with 💻 and ☕</p>
+  </footer>
+
+  <script src="script.js"></script>`;
+
 async function main() {
   const posts = await getPosts();
   let blogLinks = "";
@@ -94,9 +120,9 @@ async function main() {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>${title} – Elroy's Blog</title>
   <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
-<body>
+<body>${NAV}
   <main class="post-container">
     <article class="blog-post">
       <header>
@@ -111,6 +137,7 @@ async function main() {
       </footer>
     </article>
   </main>
+${FOOTER}
 </body>
 </html>`;
 
@@ -126,15 +153,16 @@ async function main() {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Blog – Elroy Toh</title>
   <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
-<body>
+<body>${NAV}
   <main class="post-container">
     <h1>Blog</h1>
     <div class="post-list">
       ${blogLinks}
     </div>
   </main>
+${FOOTER}
 </body>
 </html>`;
 
