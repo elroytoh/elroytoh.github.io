@@ -1,46 +1,175 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Blog – Elroy Toh</title>
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: #0d0d1a;
+      background-image: url('GbefbvoaYAADYn8.jpg');
+      background-size: auto 100vh;
+      background-repeat: no-repeat;
+      background-position: left center;
+      background-attachment: fixed;
+      min-height: 100vh;
+      color: #e8e8f0;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        background-attachment: scroll;
+        background-size: cover;
+        background-position: center top;
+      }
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      padding: 1.1rem 2rem;
+      background: rgba(10, 10, 20, 0.75);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: #c8c8e0;
+      text-decoration: none;
+      font-size: 0.9rem;
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+
+    nav a:hover { color: #fff; }
+
+    nav a.brand {
+      font-weight: 600;
+      font-size: 1rem;
+      color: #fff;
+      margin-right: auto;
+    }
+
+    main {
+      max-width: 680px;
+      margin: 4rem auto;
+      padding: 2.5rem;
+      background: rgba(10, 10, 24, 0.78);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 14px;
+      margin-left: max(40vw, calc(50vw - 340px));
+    }
+
+    @media (max-width: 900px) {
+      main {
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 2rem;
+        padding: 1.8rem 1.5rem;
+        border-radius: 10px;
+      }
+    }
+
+    h1 {
+      font-size: 1.9rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 1.8rem;
+      letter-spacing: -0.01em;
+    }
+
+    .post-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .post-list li {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1rem;
+      padding: 0.7rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .post-list li:last-child { border-bottom: none; }
+
+    .post-list a {
+      color: #d4d4f0;
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .post-list a:hover { color: #a8c8ff; }
+
+    .post-date {
+      font-size: 0.82rem;
+      color: #7878a8;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.82rem;
+      color: rgba(200,200,220,0.45);
+    }
+  </style>
 </head>
 <body>
-  <div class="bg-blobs" aria-hidden="true">
-    <span class="blob blob-a"></span>
-    <span class="blob blob-b"></span>
-  </div>
 
-  <nav class="nav">
-    <a href="index.html" class="nav-brand">Elroy Toh</a>
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-    <div class="nav-links" id="navLinks">
-      <a href="index.html#about">About</a>
-      <a href="index.html#connect">Connect</a>
-      <a href="blog.html">Blog</a>
-      <a href="https://elroytoh.github.io/pokemon-tracker1/dashboard.html" target="_blank" rel="noopener">Pokémon Tracker</a>
-    </div>
+  <nav>
+    <a class="brand" href="https://elroytoh.github.io/index.html">Elroy Toh</a>
+    <a href="https://elroytoh.github.io/index.html#about">About</a>
+    <a href="https://elroytoh.github.io/index.html#connect">Connect</a>
+    <a href="https://elroytoh.github.io/blog.html">Blog</a>
+    <a href="https://elroytoh.github.io/pokemon-tracker1/dashboard.html">Pokémon Tracker</a>
   </nav>
-  <main class="post-container">
-    <h1>Blog</h1>
-    <div class="post-list">
-      <div class="post-item"><a href="post-general-kuribayashi.html">General Kuribayashi</a> <em>3 July 2026</em></div>
-<div class="post-item"><a href="post-pokemontracker1.html">pokemontracker1</a> <em>23 June 2026</em></div>
-<div class="post-item"><a href="post-blogging-on-my-phone.html">Blogging on my phone!</a> <em>20 June 2026</em></div>
-<div class="post-item"><a href="post-first-three-months-of-work.html">First Three Months of Work</a> <em>26 October 2025</em></div>
-<div class="post-item"><a href="post-end-of-internships.html">End of Internships</a> <em>16 June 2025</em></div>
 
-    </div>
+  <main>
+    <h1>Blog</h1>
+    <ul class="post-list">
+      <li>
+        <a href="https://elroytoh.github.io/post-general-kuribayashi.html">General Kuribayashi</a>
+        <span class="post-date">3 July 2026</span>
+      </li>
+      <li>
+        <a href="https://elroytoh.github.io/post-pokemontracker1.html">pokemontracker1</a>
+        <span class="post-date">23 June 2026</span>
+      </li>
+      <li>
+        <a href="https://elroytoh.github.io/post-blogging-on-my-phone.html">Blogging on my phone!</a>
+        <span class="post-date">20 June 2026</span>
+      </li>
+      <li>
+        <a href="https://elroytoh.github.io/post-first-three-months-of-work.html">First Three Months of Work</a>
+        <span class="post-date">26 October 2025</span>
+      </li>
+      <li>
+        <a href="https://elroytoh.github.io/post-end-of-internships.html">End of Internships</a>
+        <span class="post-date">16 June 2025</span>
+      </li>
+    </ul>
   </main>
 
-  <footer class="site-footer">
-    <p>&copy; <span id="year"></span> Elroy Toh &bull; Made with 💻 and ☕</p>
-  </footer>
+  <footer>© Elroy Toh · Made with 💻 and ☕</footer>
 
-  <script src="script.js"></script>
 </body>
 </html>
