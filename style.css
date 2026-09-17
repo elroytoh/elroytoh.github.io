@@ -3,14 +3,14 @@
    ============================================ */
 
 :root {
-  --bg: #070a12;
-  --bg-elev: #0e1220;
-  --fg: #eef1f8;
-  --muted: #97a1b8;
-  --accent: #fdb927;      /* warm gold */
+  --bg: #ffffff;
+  --bg-elev: #f4f6fa;
+  --fg: #14161f;
+  --muted: #5b6478;
+  --accent: #d99a1f;      /* warm gold, darkened for contrast on white */
   --accent-2: #3e7bfa;    /* electric blue */
-  --border: rgba(255, 255, 255, 0.09);
-  --shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+  --border: rgba(20, 22, 31, 0.1);
+  --shadow: 0 20px 60px rgba(20, 22, 31, 0.12);
   --radius: 16px;
   --max-width: 880px;
 }
@@ -48,7 +48,7 @@ img { max-width: 100%; display: block; }
   position: absolute;
   border-radius: 50%;
   filter: blur(90px);
-  opacity: 0.28;
+  opacity: 0.16;
   will-change: transform;
 }
 
@@ -93,7 +93,7 @@ img { max-width: 100%; display: block; }
   justify-content: space-between;
   padding: 1.1em 6vw;
   backdrop-filter: blur(14px);
-  background: rgba(7, 10, 18, 0.55);
+  background: rgba(255, 255, 255, 0.7);
   border-bottom: 1px solid var(--border);
 }
 
@@ -268,12 +268,12 @@ main { position: relative; z-index: 1; }
 
 .btn-primary {
   background: linear-gradient(135deg, var(--accent), var(--accent-2));
-  color: #0a0d16;
+  color: #ffffff;
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(253, 185, 39, 0.25);
+  box-shadow: 0 10px 30px rgba(217, 154, 31, 0.25);
 }
 
 .btn-ghost {
@@ -323,22 +323,9 @@ main { position: relative; z-index: 1; }
   max-width: 620px;
 }
 
+/* Tag pills (Finance, Markets & Data, Python, Web Dev, Warriors) hidden per request */
 .tags {
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.6em;
-  padding: 0;
-  margin: 1.8em 0 0;
-}
-
-.tag {
-  border: 1px solid var(--border);
-  background: var(--bg-elev);
-  padding: 0.5em 1.1em;
-  border-radius: 999px;
-  font-size: 0.88em;
-  color: var(--fg);
+  display: none;
 }
 
 /* ---------- connect cards ---------- */
@@ -356,7 +343,7 @@ main { position: relative; z-index: 1; }
   padding: 1.6em;
   border-radius: var(--radius);
   border: 1px solid var(--border);
-  background: linear-gradient(180deg, var(--bg-elev), rgba(14, 18, 32, 0.4));
+  background: linear-gradient(180deg, var(--bg-elev), rgba(244, 246, 250, 0.4));
   text-decoration: none;
   transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
 }
@@ -480,7 +467,7 @@ main { position: relative; z-index: 1; }
 }
 
 .post-content p {
-  color: #d3d9ea;
+  color: #3a4152;
   font-size: 1.05em;
   margin-bottom: 1.2em;
 }
@@ -510,7 +497,7 @@ main { position: relative; z-index: 1; }
     right: 0;
     flex-direction: column;
     gap: 0;
-    background: rgba(7, 10, 18, 0.97);
+    background: rgba(255, 255, 255, 0.97);
     border-bottom: 1px solid var(--border);
     transform: translateY(-120%);
     transition: transform 0.25s ease;
