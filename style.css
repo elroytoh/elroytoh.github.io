@@ -1,34 +1,48 @@
 /* ============================================
-   Elroy Toh — portfolio site (minimal, serif)
+   Elroy Toh — minimalist personal site
    ============================================ */
 
 :root {
-  --bg: #f5f1e8;
-  --fg: #1b1b1b;
-  --muted: #6b6b6b;
-  --accent: #9a5b13;      /* muted warm brown-gold, quiet on serif text */
-  --border: rgba(0, 0, 0, 0.1);
-  --max-width: 640px;
+  --bg: #f7f5f0;
+  --fg: #222;
+  --muted: #777;
+  --accent: #8a5a20;
+  --border: rgba(0, 0, 0, 0.12);
+  --max-width: 620px;
 }
 
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+}
 
 body {
   margin: 0;
-  font-family: Charter, 'Iowan Old Style', Georgia, 'Times New Roman', serif;
+  font-family: Georgia, 'Times New Roman', serif;
   background: var(--bg);
   color: var(--fg);
-  line-height: 1.65;
-  font-size: 20px;
+  line-height: 1.55;
+  font-size: 18px;
 }
 
-a { color: inherit; }
+/* ---------- links ---------- */
 
-img { max-width: 100%; display: block; }
+a {
+  color: inherit;
+}
 
-main, header, footer {
+a:hover {
+  color: var(--accent);
+}
+
+/* ---------- layout ---------- */
+
+main,
+header,
+footer {
   max-width: var(--max-width);
   margin: 0 auto;
   padding-left: 1.5rem;
@@ -41,17 +55,15 @@ main, header, footer {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 0.5em 1.2em;
-  padding-top: 3.5em;
-  padding-bottom: 1.5em;
+  padding-top: 2.5rem;
+  padding-bottom: 1rem;
 }
 
 .site-name {
   font-weight: 700;
   text-decoration: none;
   color: var(--fg);
-  font-size: 1.05em;
+  font-size: 1em;
 }
 
 .site-links {
@@ -63,7 +75,7 @@ main, header, footer {
   color: var(--muted);
   text-decoration: underline;
   text-decoration-color: var(--border);
-  font-size: 0.95em;
+  font-size: 0.9em;
 }
 
 .site-links a:hover {
@@ -73,33 +85,43 @@ main, header, footer {
 
 /* ---------- main content ---------- */
 
-main h1 {
-  font-size: 2em;
-  font-weight: 700;
-  margin: 0.4em 0 1.6em;
-  letter-spacing: -0.01em;
+main {
+  padding-top: 3.5rem;
+  padding-bottom: 2rem;
 }
 
-section { margin-bottom: 2.6em; }
+main h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 2rem;
+  letter-spacing: -0.02em;
+}
+
+section {
+  margin-bottom: 2.8rem;
+}
 
 section h2 {
-  font-size: 0.85em;
+  font-size: 0.78rem;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   color: var(--muted);
-  margin: 0 0 0.9em;
+  margin: 0 0 0.8rem;
   font-weight: 600;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
 }
+
+/* ---------- bullet lists ---------- */
 
 .list {
   list-style-type: disc;
-  padding-left: 1.4em;
+  padding-left: 1.25rem;
   margin: 0;
 }
 
 .list li {
-  margin-bottom: 0.7em;
+  margin-bottom: 0.45rem;
+  padding-left: 0.15rem;
   color: var(--fg);
 }
 
@@ -107,6 +129,7 @@ section h2 {
   color: var(--fg);
   text-decoration: underline;
   text-decoration-color: var(--border);
+  text-underline-offset: 2px;
 }
 
 .list a:hover {
@@ -114,51 +137,51 @@ section h2 {
   text-decoration-color: var(--accent);
 }
 
-
 /* ---------- footer ---------- */
 
 footer {
-  padding: 2.5em 1.5rem 5em;
+  padding-top: 1.5rem;
+  padding-bottom: 4rem;
   color: var(--muted);
-  font-size: 0.85em;
+  font-size: 0.8rem;
 }
 
-/* ---------- blog pages ---------- */
+/* ---------- blog ---------- */
 
 .post-container {
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 4.5em 1.5rem 5em;
+  padding: 3.5rem 1.5rem 4rem;
 }
 
 .post-container h1 {
-  font-size: 1.8em;
+  font-size: 2rem;
   font-weight: 700;
-  letter-spacing: -0.01em;
-  margin-bottom: 0.4em;
+  letter-spacing: -0.02em;
+  margin: 0 0 1.8rem;
 }
 
 .post-list {
   list-style: none;
   padding: 0;
-  margin-top: 1.6em;
+  margin: 0;
 }
 
 .post-item {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
-  gap: 1em;
-  padding: 0.9em 0;
+  gap: 1rem;
+  padding: 0.8rem 0;
   border-bottom: 1px solid var(--border);
 }
 
 .post-item a {
-  font-size: 1.05em;
+  font-size: 1em;
   font-weight: 600;
   text-decoration: underline;
   text-decoration-color: var(--border);
-  transition: color 0.2s ease;
+  text-underline-offset: 2px;
 }
 
 .post-item a:hover {
@@ -167,12 +190,14 @@ footer {
 }
 
 .post-item em {
-  font-size: 0.85em;
+  font-size: 0.78em;
   color: var(--muted);
   font-style: normal;
   white-space: nowrap;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
 }
+
+/* ---------- individual blog posts ---------- */
 
 .blog-post header {
   margin-bottom: 1.8em;
@@ -182,18 +207,18 @@ footer {
 
 .blog-post .date {
   color: var(--muted);
-  font-size: 0.85em;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 0.8em;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .post-content p {
   color: var(--fg);
-  font-size: 1.05em;
+  font-size: 1em;
   margin-bottom: 1.2em;
 }
 
 .post-footer {
-  margin-top: 2.6em;
+  margin-top: 2.5em;
 }
 
 .post-footer a {
@@ -201,7 +226,6 @@ footer {
   text-decoration-color: var(--border);
   color: var(--muted);
   font-weight: 600;
-  transition: color 0.2s ease;
 }
 
 .post-footer a:hover {
@@ -212,13 +236,30 @@ footer {
 /* ---------- responsive ---------- */
 
 @media (max-width: 480px) {
-  body { font-size: 18px; }
+  body {
+    font-size: 17px;
+  }
 
-  .site-header {
-    padding-top: 2.5em;
+  main {
+    padding-top: 2.5rem;
+  }
+
+  .post-container {
+    padding-top: 2.5rem;
+  }
+
+  .post-item {
+    display: block;
+  }
+
+  .post-item em {
+    display: block;
+    margin-top: 0.2rem;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
+  html {
+    scroll-behavior: auto;
+  }
 }
