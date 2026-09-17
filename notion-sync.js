@@ -7,15 +7,23 @@ const notion = new Client({
 
 const databaseId = process.env.NOTION_DATABASE_ID;
 
+
+/* ============================================
+   Get published posts from Notion
+   ============================================ */
+
 async function getPosts() {
+
   const response = await notion.databases.query({
     database_id: databaseId,
+
     filter: {
       property: "Published",
       checkbox: {
         equals: true
       }
     },
+
     sorts: [
       {
         property: "Date",
@@ -27,33 +35,66 @@ async function getPosts() {
   return response.results;
 }
 
+
+/* ============================================
+   Get title
+   ============================================ */
+
 function getTitle(page) {
+
   const titleProp = Object.values(page.properties)
     .find(p => p.type === "title");
 
   return titleProp?.title?.[0]?.plain_text || "Untitled";
 }
 
+
+/* ============================================
+   Create filename
+   ============================================ */
+
 function getSlug(title) {
+
   return title
     .toLowerCase()
     .replace(/\s+/g, "-")
     .replace(/[^a-z0-9-]/g, "");
 }
 
+
+/* ============================================
+   Get date
+   ============================================ */
+
 function getDate(page) {
+
   return page.properties.Date?.date?.start || "2026-01-01";
 }
 
+
+/* ============================================
+   Format date
+   ============================================ */
+
 function formatDate(date) {
-  return new Date(date).toLocaleDateString("en-GB", {
-    year: "numeric",
-    month: "long",
-    day: "numeric"
-  });
+
+  return new Date(date).toLocaleDateString(
+    "en-GB",
+    {
+      year: "numeric",
+      month: "long",
+      day: "numeric"
+    }
+  );
 }
 
+
+/* ============================================
+   Escape HTML
+   ============================================ */
+
 function escapeHtml(text) {
+
   return text
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
@@ -62,8 +103,15 @@ function escapeHtml(text) {
     .replace(/'/g, "&#039;");
 }
 
+
+/* ============================================
+   Render Notion rich text
+   ============================================ */
+
 function renderRichText(richText) {
+
   return richText.map(t => {
+
     let text = escapeHtml(t.plain_text);
 
     if (t.annotations.bold) {
@@ -79,10 +127,17 @@ function renderRichText(richText) {
     }
 
     return text;
+
   }).join("");
 }
 
+
+/* ============================================
+   Get page content from Notion
+   ============================================ */
+
 async function getContent(pageId) {
+
   const response = await notion.blocks.children.list({
     block_id: pageId
   });
@@ -92,38 +147,75 @@ async function getContent(pageId) {
 
   for (const block of response.results) {
 
+    /*
+     * Close an existing bullet list
+     * when the next block isn't a bullet.
+     */
+
     if (
       block.type !== "bulleted_list_item" &&
       inList
     ) {
+
       content += `</ul>\n`;
       inList = false;
+
     }
 
+
     if (block.type === "paragraph") {
-      const text = renderRichText(block.paragraph.rich_text);
+
+      const text = renderRichText(
+        block.paragraph.rich_text
+      );
 
       if (text) {
         content += `<p>${text}</p>\n`;
       }
 
-    } else if (block.type === "heading_1") {
-      const text = renderRichText(block.heading_1.rich_text);
+    }
+
+
+    else if (block.type === "heading_1") {
+
+      const text = renderRichText(
+        block.heading_1.rich_text
+      );
+
       content += `<h1>${text}</h1>\n`;
 
-    } else if (block.type === "heading_2") {
-      const text = renderRichText(block.heading_2.rich_text);
+    }
+
+
+    else if (block.type === "heading_2") {
+
+      const text = renderRichText(
+        block.heading_2.rich_text
+      );
+
       content += `<h2>${text}</h2>\n`;
 
-    } else if (block.type === "heading_3") {
-      const text = renderRichText(block.heading_3.rich_text);
+    }
+
+
+    else if (block.type === "heading_3") {
+
+      const text = renderRichText(
+        block.heading_3.rich_text
+      );
+
       content += `<h3>${text}</h3>\n`;
 
-    } else if (block.type === "bulleted_list_item") {
+    }
+
+
+    else if (block.type === "bulleted_list_item") {
 
       if (!inList) {
+
         content += `<ul>\n`;
         inList = true;
+
       }
 
       const text = renderRichText(
@@ -132,49 +224,70 @@ async function getContent(pageId) {
 
       content += `<li>${text}</li>\n`;
 
-    } else if (block.type === "numbered_list_item") {
+    }
+
+
+    else if (block.type === "numbered_list_item") {
 
       const text = renderRichText(
         block.numbered_list_item.rich_text
       );
 
-      content += `<ol>\n<li>${text}</li>\n</ol>\n`;
+      content += `<ol>\n`;
+      content += `<li>${text}</li>\n`;
+      content += `</ol>\n`;
+
     }
+
   }
+
 
   if (inList) {
     content += `</ul>\n`;
   }
+
 
   return content;
 }
 
 
 /* ============================================
-   Generated footer
+   Footer
    ============================================ */
 
 const FOOTER = `
 <footer>
   <p>© Elroy Toh</p>
-</footer>`;
+</footer>
+`;
 
 
 /* ============================================
-   Generate individual blog post
+   Generate individual post
    ============================================ */
 
-function generatePostHtml(title, date, content) {
+function generatePostHtml(
+  title,
+  date,
+  content
+) {
 
   return `<!DOCTYPE html>
 <html lang="en">
+
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
   <title>${escapeHtml(title)} – Elroy Toh</title>
 
   <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
@@ -184,21 +297,34 @@ function generatePostHtml(title, date, content) {
   <article class="blog-post">
 
     <header>
-      <h1>${escapeHtml(title)}</h1>
+
+      <h1>
+        ${escapeHtml(title)}
+      </h1>
 
       <time
         class="date"
-        datetime="${date}">
+        datetime="${date}"
+      >
         ${formatDate(date)}
       </time>
+
     </header>
 
+
     <section class="post-content">
+
       ${content}
+
     </section>
 
+
     <footer class="post-footer">
-      <a href="index.html">← Back to home</a>
+
+      <a href="index.html">
+        ← Back to home
+      </a>
+
     </footer>
 
   </article>
@@ -208,12 +334,13 @@ function generatePostHtml(title, date, content) {
 ${FOOTER}
 
 </body>
+
 </html>`;
 }
 
 
 /* ============================================
-   Generate Writings section
+   Generate homepage writing links
    ============================================ */
 
 function generateWritingLinks(posts) {
@@ -231,6 +358,7 @@ function generateWritingLinks(posts) {
         <a href="post-${slug}.html">
           ${escapeHtml(title)}
         </a>
+
         <span class="date">
           ${formatDate(date)}
         </span>
@@ -251,55 +379,86 @@ function updateIndexHtml(posts) {
   const indexPath = "index.html";
 
   if (!fs.existsSync(indexPath)) {
-    console.log("index.html not found. Skipping homepage update.");
+
+    console.log(
+      "index.html not found. Skipping homepage update."
+    );
+
     return;
   }
 
-  let indexHtml = fs.readFileSync(indexPath, "utf8");
 
-  const writingLinks = generateWritingLinks(posts);
+  let indexHtml = fs.readFileSync(
+    indexPath,
+    "utf8"
+  );
 
-  const writingsSection = `
-  <section>
-    <h2>Writings</h2>
+
+  const writingLinks =
+    generateWritingLinks(posts);
+
+
+  const newWritings = `<!-- NOTION_WRITINGS_START -->
 
     <ul class="list">
+
 ${writingLinks}
+
     </ul>
-  </section>
-`;
 
-  /*
-   * Replace the existing Writings section.
-   * It looks for the first section containing <h2>Writings</h2>.
-   */
+    <!-- NOTION_WRITINGS_END -->`;
 
-  const sectionRegex =
-    /<section>\s*<h2>Writings<\/h2>[\s\S]*?<\/section>/i;
 
-  if (sectionRegex.test(indexHtml)) {
+  const startMarker =
+    "<!-- NOTION_WRITINGS_START -->";
 
-    indexHtml = indexHtml.replace(
-      sectionRegex,
-      writingsSection.trim()
+  const endMarker =
+    "<!-- NOTION_WRITINGS_END -->";
+
+
+  const start =
+    indexHtml.indexOf(startMarker);
+
+  const end =
+    indexHtml.indexOf(endMarker);
+
+
+  if (start === -1 || end === -1) {
+
+    console.log(
+      "ERROR: Notion writing markers not found in index.html."
     );
 
-  } else {
-
-    /*
-     * If no Writings section exists,
-     * insert one at the beginning of <main>.
-     */
-
-    indexHtml = indexHtml.replace(
-      /<main>/i,
-      `<main>\n${writingsSection}`
+    console.log(
+      "Make sure index.html contains:"
     );
+
+    console.log(startMarker);
+    console.log(endMarker);
+
+    return;
   }
 
-  fs.writeFileSync(indexPath, indexHtml);
 
-  console.log("index.html Writings section updated!");
+  const endPosition =
+    end + endMarker.length;
+
+
+  indexHtml =
+    indexHtml.substring(0, start) +
+    newWritings +
+    indexHtml.substring(endPosition);
+
+
+  fs.writeFileSync(
+    indexPath,
+    indexHtml
+  );
+
+
+  console.log(
+    "index.html Writings section updated!"
+  );
 }
 
 
@@ -311,7 +470,14 @@ async function main() {
 
   const posts = await getPosts();
 
-  console.log(`Found ${posts.length} published posts.`);
+  console.log(
+    `Found ${posts.length} published posts.`
+  );
+
+
+  /*
+   * Generate individual post pages.
+   */
 
   for (const post of posts) {
 
@@ -319,20 +485,28 @@ async function main() {
     const slug = getSlug(title);
     const date = getDate(post);
 
-    console.log(`Syncing: ${title}`);
-
-    const content = await getContent(post.id);
-
-    const postHtml = generatePostHtml(
-      title,
-      date,
-      content
+    console.log(
+      `Syncing: ${title}`
     );
+
+
+    const content =
+      await getContent(post.id);
+
+
+    const postHtml =
+      generatePostHtml(
+        title,
+        date,
+        content
+      );
+
 
     fs.writeFileSync(
       `post-${slug}.html`,
       postHtml
     );
+
 
     console.log(
       `Created: post-${slug}.html`
@@ -341,29 +515,37 @@ async function main() {
 
 
   /*
-   * Update homepage from Notion posts.
+   * Update homepage.
    */
 
   updateIndexHtml(posts);
 
 
   /*
-   * Keep blog.html for now.
-   * This means your existing setup won't break.
+   * Keep blog.html for now so
+   * nothing else breaks.
    */
 
-  const blogLinks = generateWritingLinks(posts);
+  const writingLinks =
+    generateWritingLinks(posts);
+
 
   const blogHtml = `<!DOCTYPE html>
 <html lang="en">
 
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
   <title>Blog – Elroy Toh</title>
 
   <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
@@ -373,7 +555,9 @@ async function main() {
   <h1>Blog</h1>
 
   <ul class="list">
-    ${blogLinks}
+
+    ${writingLinks}
+
   </ul>
 
 </main>
@@ -381,18 +565,30 @@ async function main() {
 ${FOOTER}
 
 </body>
+
 </html>`;
+
 
   fs.writeFileSync(
     "blog.html",
     blogHtml
   );
 
-  console.log("blog.html updated!");
+
+  console.log(
+    "blog.html updated!"
+  );
+
 }
 
 
 main().catch(err => {
-  console.error("Error:", err);
+
+  console.error(
+    "Error:",
+    err
+  );
+
   process.exit(1);
+
 });
