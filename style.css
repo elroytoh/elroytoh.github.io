@@ -3,7 +3,7 @@
    ============================================ */
 
 :root {
-  --bg: #ffffff;
+  --bg: #f5f1e8;
   --fg: #1b1b1b;
   --muted: #6b6b6b;
   --accent: #9a5b13;      /* muted warm brown-gold, quiet on serif text */
@@ -21,7 +21,7 @@ body {
   background: var(--bg);
   color: var(--fg);
   line-height: 1.65;
-  font-size: 18px;
+  font-size: 20px;
 }
 
 a { color: inherit; }
@@ -211,7 +211,7 @@ footer {
 /* ---------- responsive ---------- */
 
 @media (max-width: 480px) {
-  body { font-size: 16.5px; }
+  body { font-size: 18px; }
 
   .site-header {
     padding-top: 2.5em;
