@@ -38,6 +38,7 @@ a:hover {
   color: var(--accent);
 }
 
+
 /* ---------- layout ---------- */
 
 main,
@@ -49,39 +50,6 @@ footer {
   padding-right: 1.5rem;
 }
 
-/* ---------- header ---------- */
-
-.site-header {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  padding-top: 2.5rem;
-  padding-bottom: 1rem;
-}
-
-.site-name {
-  font-weight: 700;
-  text-decoration: none;
-  color: var(--fg);
-  font-size: 1em;
-}
-
-.site-links {
-  display: flex;
-  gap: 1.2em;
-}
-
-.site-links a {
-  color: var(--muted);
-  text-decoration: underline;
-  text-decoration-color: var(--border);
-  font-size: 0.9em;
-}
-
-.site-links a:hover {
-  color: var(--accent);
-  text-decoration-color: var(--accent);
-}
 
 /* ---------- main content ---------- */
 
@@ -106,24 +74,28 @@ section h2 {
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: var(--muted);
-  margin: 0 0 0.8rem;
+  margin: 0 0 0.9rem;
   font-weight: 600;
   font-family: Arial, Helvetica, sans-serif;
 }
+
 
 /* ---------- bullet lists ---------- */
 
 .list {
   list-style-type: disc;
-  padding-left: 1.25rem;
+  padding-left: 1.3rem;
   margin: 0;
 }
 
 .list li {
-  margin-bottom: 1.1rem;
+  margin-bottom: 1rem;
   padding-left: 0.15rem;
   color: var(--fg);
 }
+
+
+/* ---------- writing links ---------- */
 
 .list a {
   color: var(--fg);
@@ -135,6 +107,7 @@ section h2 {
   text-decoration: underline;
 }
 
+
 /* ---------- writing dates ---------- */
 
 .list .date {
@@ -145,6 +118,7 @@ section h2 {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+
 /* ---------- footer ---------- */
 
 footer {
@@ -154,7 +128,10 @@ footer {
   font-size: 0.8rem;
 }
 
-/* ---------- blog ---------- */
+
+/* ============================================
+   Blog post pages
+   ============================================ */
 
 .post-container {
   max-width: var(--max-width);
@@ -166,56 +143,18 @@ footer {
   font-size: 2rem;
   font-weight: 700;
   letter-spacing: -0.02em;
-  margin: 0 0 1.8rem;
+  margin: 0 0 0.5rem;
 }
-
-.post-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.post-item {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: 0.8rem 0;
-  border-bottom: 1px solid var(--border);
-}
-
-.post-item a {
-  font-size: 1em;
-  font-weight: 600;
-  text-decoration: underline;
-  text-decoration-color: var(--border);
-  text-underline-offset: 2px;
-}
-
-.post-item a:hover {
-  color: var(--accent);
-  text-decoration-color: var(--accent);
-}
-
-.post-item em {
-  font-size: 0.78em;
-  color: var(--muted);
-  font-style: normal;
-  white-space: nowrap;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-/* ---------- individual blog posts ---------- */
 
 .blog-post header {
-  margin-bottom: 1.8em;
-  padding-bottom: 1.2em;
+  margin-bottom: 1.8rem;
+  padding-bottom: 1.2rem;
   border-bottom: 1px solid var(--border);
 }
 
 .blog-post .date {
   color: var(--muted);
-  font-size: 0.8em;
+  font-size: 0.8rem;
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -225,8 +164,16 @@ footer {
   margin-bottom: 1.2em;
 }
 
+.post-content ul {
+  padding-left: 1.4rem;
+}
+
+.post-content li {
+  margin-bottom: 0.5rem;
+}
+
 .post-footer {
-  margin-top: 2.5em;
+  margin-top: 2.5rem;
 }
 
 .post-footer a {
@@ -241,9 +188,11 @@ footer {
   text-decoration-color: var(--accent);
 }
 
+
 /* ---------- responsive ---------- */
 
 @media (max-width: 480px) {
+
   body {
     font-size: 17px;
   }
@@ -256,18 +205,15 @@ footer {
     padding-top: 2.5rem;
   }
 
-  .post-item {
-    display: block;
-  }
-
-  .post-item em {
-    display: block;
-    margin-top: 0.2rem;
-  }
 }
 
+
+/* ---------- accessibility ---------- */
+
 @media (prefers-reduced-motion: reduce) {
+
   html {
     scroll-behavior: auto;
   }
+
 }
