@@ -93,8 +93,8 @@ section h2 {
 }
 
 .list {
-  list-style: none;
-  padding: 0;
+  list-style-type: disc;
+  padding-left: 1.4em;
   margin: 0;
 }
 
@@ -113,6 +113,7 @@ section h2 {
   color: var(--accent);
   text-decoration-color: var(--accent);
 }
+
 
 /* ---------- footer ---------- */
 
